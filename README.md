@@ -7,4 +7,7 @@ B) Your bird’s horizontal speed remains constant. <br>
 C) The pipes through which your bird flies appear at varying heights, but always have the same vertical clearance and horizontal distance between them.<br>
 
 # Glance of the project 
-Uploading bandicam 2022-06-13 11-05-06-585.mp4…
+
+
+https://user-images.githubusercontent.com/78306516/173833859-3ef5dec3-0515-48dd-903c-beac00794ef3.mp4
+
