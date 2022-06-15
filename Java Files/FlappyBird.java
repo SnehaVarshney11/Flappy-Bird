@@ -108,6 +108,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
             addColumn(true);
 
             gameOver = false;
+            return;
         }
 
         if (!started) {
@@ -126,7 +127,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
     // To render multiple times, use our Renderer.
     public void actionPerformed(ActionEvent arg0) {
 
-        int speed = 7;
+        int speed = 6;
 
         ticks++;
 
@@ -192,6 +193,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
             if (bird.y > HEIGHT - 120 || bird.y < 0) {
 
                 gameOver = true;
+                return;
             }
 
             if (bird.y + yMotion >= HEIGHT - 120) {
