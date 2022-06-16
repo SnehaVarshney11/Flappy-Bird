@@ -27,17 +27,17 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
     public static FlappyBird flappybird;
     public Renderer renderer;
     public Rectangle bird;
-    public int ticks, yMotion, score;
+    public int ticks, yMotion, score = 0;
     public ArrayList<Rectangle> columns;
     public Random rand;
     public boolean gameOver, started;
 
-    public final int WIDTH = 800, HEIGHT = 800;
+    public final int WIDTH = 700, HEIGHT = 700;
 
     public FlappyBird() {
 
         JFrame jframe = new JFrame();
-        Timer timer = new Timer(20, this);
+        Timer timer = new Timer(30, this);
         renderer = new Renderer();
         rand = new Random();
 
@@ -112,7 +112,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
         }
 
         if (!started) {
-
+            
             started = true;
         } else if (!gameOver) {
 
@@ -141,7 +141,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
             if (ticks % 2 == 0 && yMotion < 15) {
 
-                yMotion += 2;
+                yMotion += 3;
             }
 
             for (int i = 0; i < columns.size(); i++) {
@@ -151,12 +151,12 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
                 if (column.x + column.width < 0) {
 
                     columns.remove(column);
-
                     if (column.y == 0) {
 
                         addColumn(false);
                     }
                 }
+                
             }
 
             bird.y += yMotion;
@@ -165,6 +165,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
                 if (column.y == 0 && bird.x + bird.width / 2 > column.x + column.width / 2 - 10 && bird.x + bird.width / 2 < column.x + column.width / 2 + 10) {
 
+               
                     score++;
                 }
 
@@ -199,6 +200,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
             if (bird.y + yMotion >= HEIGHT - 120) {
 
                 bird.y = HEIGHT - 120 - bird.height;
+                
             }
         }
         renderer.repaint();
@@ -206,7 +208,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
 
     public void repaint(Graphics g) {
         // Background Color.
-        g.setColor(Color.yellow);
+        g.setColor(Color.white);
         g.fillRect(0, 0, HEIGHT, WIDTH);
 
         // Add Ground.
@@ -218,7 +220,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
         g.fillRect(0, HEIGHT - 120, WIDTH, 20);
 
         // Bird (player) icon.
-        g.setColor(Color.cyan);
+        g.setColor(Color.CYAN);
         g.fillRect(bird.x, bird.y, bird.height, bird.width);
 
         for (Rectangle column : columns) {
@@ -226,8 +228,8 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
             paintColumn(g, column);
         }
 
-        g.setColor(Color.white);
-        g.setFont(new Font("Arial", 1, 80));
+        g.setColor(Color.black);
+        g.setFont(new Font("black", 1, 80));
 
         if (!started) {
 
@@ -237,6 +239,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener {
         if (gameOver) {
 
             g.drawString("Game Over", 100, HEIGHT / 2 - 50);
+            return;
         }
 
         if (!gameOver && started) {
